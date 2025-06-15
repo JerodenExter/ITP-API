@@ -2,16 +2,65 @@
 <html lang="nl">
 <head>
   <meta charset="UTF-8">
-  <title>Dynamische Beertjes 🐻</title>
+  <title>Foto's van beertjes </title>
+  <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body>
-  <h1>Beertje 1 (200x200)</h1>
-  <img src="/api/bear?width=200&height=200" alt="Beertje klein">
+<body class="text-center">
 
-  <h1>Beertje 2 (500x300)</h1>
-  <img src="/api/bear?width=500&height=300" alt="Beertje breed">
+  <!-- nav bar -->
+  <header>
+    <nav class="bg-stone-700 p-4">
+      <ul class="flex list-none m-0 p-0 space-x-4">
+        <li>
+          <a href="index.html" class="text-white hover:bg-stone-500 px-3 py-2 rounded transition-colors">Home</a>
+        </li>
+        <li>
+          <a href="detailPaginas/detailBeer1.html" class="text-white hover:bg-stone-500 px-3 py-2 rounded transition-colors">Detail Beer 1</a>
+        </li>
+        <li>
+          <a href="detailPaginas/detailBeer2.html" class="text-white hover:bg-stone-500 px-3 py-2 rounded transition-colors">Detail Beer 2</a>
+        </li>
+        <li>
+          <a href="detailPaginas/detailBeer3.html" class="text-white hover:bg-stone-500 px-3 py-2 rounded transition-colors">Detail Beer 3</a>
+        </li>
+        <li>
+          <a href="detailPaginas/detailBeer4.html" class="text-white hover:bg-stone-500 px-3 py-2 rounded transition-colors">Detail Beer 4</a>
+        </li>
+      </ul>
+    </nav>
+  </header>
 
-  <h1>Standaard beer (300x300)</h1>
-  <img src="/api/bear?width=300&height=300" alt="Beertje standaard">
+  <!-- fotos van beertjes -->
+   <h2 class="text-2xl font-bold mt-8 mb-4">Home</h2>
+  <main class="grid grid-cols-2 grid-rows-2 gap-6 p-8 place-items-center">
+  <section>
+    <h2 class="text-lg font-semibold mb-2">Beertje 1 (200x200)</h2>
+    <a href="detailPaginas/detailBeer1.html">
+    <img src="/api/bear?width=200&height=200" alt="Beer 1" class="w-[200px] h-[200px] object-cover">
+    </a>
+  </section>
+
+  <section>
+    <h2 class="text-lg font-semibold mb-2">Beertje 2 (500x300)</h2>
+    <a href="detailPaginas/detailBeer2.html">
+    <img src="/api/bear?width=500&height=300" alt="Beer 2" class="w-[500px] h-[300px] object-cover">
+    </a>
+  </section>
+
+  <section>
+    <h2 class="text-lg font-semibold mb-2">Beertje 3 (300x300)</h2>
+    <a href="detailPaginas/detailBeer3.html">
+      <img src="/api/bear?width=300&height=300" alt="Beer 3" class="w-[300px] h-[300px] object-cover">
+    </a>  
+  </section>
+
+  <section>
+    <h2 class="text-lg font-semibold mb-2">Beertje 4 (400x300)</h2>
+    <a href="detailPaginas/detailBeer4.html">
+      <img src="/api/bear?width=100&height=200" alt="Beer 4" class="w-[400px] h-[300px] object-cover">
+    </a>
+  </section>
+</main>
+
 </body>
 </html>
