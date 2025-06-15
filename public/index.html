@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="nl">
 <head>
-  <meta charset="UTF-8">
-  <title>Foto's van beertjes </title>
+  <meta charset="UTF-8" />
+  <title>Foto's van beertjes</title>
   <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body class="text-center">
@@ -31,36 +31,68 @@
   </header>
 
   <!-- fotos van beertjes -->
-   <h2 class="text-2xl font-bold mt-8 mb-4">Home</h2>
+  <h2 class="text-2xl font-bold mt-8 mb-4">Home</h2>
   <main class="grid grid-cols-2 grid-rows-2 gap-6 p-8 place-items-center">
-  <section>
-    <h2 class="text-lg font-semibold mb-2">Beertje 1 (200x200)</h2>
-    <a href="detailPaginas/detailBeer1.html">
-    <img src="/api/bear?width=200&height=200" alt="Beer 1" class="w-[200px] h-[200px] object-cover">
-    </a>
-  </section>
+    <section>
+      <h2 class="text-lg font-semibold mb-2">Beertje 1 (200x200)</h2>
+      <a href="detailPaginas/detailBeer1.html">
+        <img id="bear1" alt="Beer 1" class="w-[200px] h-[200px] object-cover" />
+      </a>
+    </section>
 
-  <section>
-    <h2 class="text-lg font-semibold mb-2">Beertje 2 (500x300)</h2>
-    <a href="detailPaginas/detailBeer2.html">
-    <img src="/api/bear?width=500&height=300" alt="Beer 2" class="w-[500px] h-[300px] object-cover">
-    </a>
-  </section>
+    <section>
+      <h2 class="text-lg font-semibold mb-2">Beertje 2 (500x300)</h2>
+      <a href="detailPaginas/detailBeer2.html">
+        <img id="bear2" alt="Beer 2" class="w-[500px] h-[300px] object-cover" />
+      </a>
+    </section>
 
-  <section>
-    <h2 class="text-lg font-semibold mb-2">Beertje 3 (300x300)</h2>
-    <a href="detailPaginas/detailBeer3.html">
-      <img src="/api/bear?width=300&height=300" alt="Beer 3" class="w-[300px] h-[300px] object-cover">
-    </a>  
-  </section>
+    <section>
+      <h2 class="text-lg font-semibold mb-2">Beertje 3 (300x300)</h2>
+      <a href="detailPaginas/detailBeer3.html">
+        <img id="bear3" alt="Beer 3" class="w-[300px] h-[300px] object-cover" />
+      </a>
+    </section>
 
-  <section>
-    <h2 class="text-lg font-semibold mb-2">Beertje 4 (400x300)</h2>
-    <a href="detailPaginas/detailBeer4.html">
-      <img src="/api/bear?width=100&height=200" alt="Beer 4" class="w-[400px] h-[300px] object-cover">
-    </a>
-  </section>
-</main>
+    <section>
+      <h2 class="text-lg font-semibold mb-2">Beertje 4 (400x300)</h2>
+      <a href="detailPaginas/detailBeer4.html">
+        <img id="bear4" alt="Beer 4" class="w-[400px] h-[300px] object-cover" />
+      </a>
+    </section>
+  </main>
 
+  <script>
+    //dit stukje zegt dat je vier afbeeldingen met deze width en height wil hebben op de pagina
+    async function loadBears() {
+      const beertjes = [
+        { id: 'bear1', width: 200, height: 200 },
+        { id: 'bear2', width: 500, height: 300 },
+        { id: 'bear3', width: 300, height: 300 },
+        { id: 'bear4', width: 100, height: 200 }
+      ];
+
+      // fetch afbeeldingen van de api in de lijst hierboven en zet ze in een img tag
+      try {
+        const promises = beertjes.map(async (beertje) => {
+          const response = await fetch(`/api/bear?width=${beertje.width}&height=${beertje.height}`);
+          const blob = await response.blob();
+          return { id: beertje.id, url: URL.createObjectURL(blob) };
+        });
+
+        const results = await Promise.all(promises);
+
+        // kijkt naar de id van de beertjes lijst en zet de url van de afbeelding in de src van de img tag
+        results.forEach(({ id, url }) => {
+          document.getElementById(id).src = url;
+        });
+
+      } catch (error) {
+        console.error(error);
+      }
+    }
+
+    window.addEventListener('DOMContentLoaded', loadBears);
+  </script>
 </body>
 </html>
